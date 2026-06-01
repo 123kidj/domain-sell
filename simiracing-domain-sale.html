@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>simiracing.com + simiracing.in — For Sale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #E8310A;
+    --red-dim: rgba(232,49,10,0.12);
+    --white: #F2EDE6;
+    --muted: rgba(242,237,230,0.45);
+    --bg: #0C0B09;
+    --surface: #131210;
+    --border: rgba(242,237,230,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+  }
+
+  section, header, footer { position: relative; z-index: 1; }
+
+  /* ── HEADER ── */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .logo span { color: var(--red); }
+
+  .header-pill {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 0.5px solid rgba(232,49,10,0.5);
+    color: var(--red);
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: var(--red-dim);
+    animation: blink 2.5s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 60px 80px;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+  .hero-title .accent { color: var(--red); }
+  .hero-title .outline {
+    -webkit-text-stroke: 1px rgba(242,237,230,0.3);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 17px; font-weight: 300; color: var(--muted);
+    line-height: 1.75; max-width: 520px;
+    margin-bottom: 44px;
+  }
+
+  .hero-price {
+    display: inline-flex; align-items: baseline; gap: 10px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    padding: 16px 28px;
+    border-radius: 4px;
+  }
+  .price-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px; color: var(--white); letter-spacing: 0.04em;
+  }
+  .price-note { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+  /* ── DOMAIN STRIP ── */
+  .domain-strip {
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 32px 60px;
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+
+  .domain-badge {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface);
+    border: 0.5px solid rgba(232,49,10,0.25);
+    border-radius: 6px;
+    padding: 14px 22px;
+    transition: border-color 0.2s;
+  }
+  .domain-badge:hover { border-color: rgba(232,49,10,0.6); }
+
+  .domain-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--red);
+    animation: blink 2s infinite;
+  }
+
+  .domain-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.06em;
+    color: var(--white);
+  }
+  .domain-name .ext { color: var(--red); }
+
+  .domain-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    border-left: 1px solid var(--border);
+    padding-left: 12px;
+  }
+
+  /* ── WHY SECTION ── */
+  .why {
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px 80px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .why-heading {
+    grid-column: 1 / -1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 52px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .why-heading span { color: var(--red); }
+
+  .why-card {
+    border-left: 2px solid var(--red);
+    padding-left: 20px;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .why-card.visible { opacity: 1; transform: translateY(0); }
+
+  .why-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--red); margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .why-card h3 {
+    font-size: 17px; font-weight: 600;
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .why-card p {
+    font-size: 14px; font-weight: 300; color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ── COMPARISON ── */
+  .compare {
+    padding: 80px 60px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .compare-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 46px);
+    letter-spacing: 0.04em; margin-bottom: 40px;
+  }
+  .compare-heading span { color: var(--red); }
+
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 14px;
+  }
+  .compare-table th {
+    text-align: left; padding: 12px 16px;
+    font-weight: 500; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .compare-table td {
+    padding: 16px 16px;
+    border-bottom: 0.5px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  .col-no { color: var(--muted); }
+  .col-yes { color: var(--white); }
+  .badge-yes {
+    display: inline-block;
+    background: rgba(232,49,10,0.12);
+    border: 0.5px solid rgba(232,49,10,0.35);
+    color: var(--red);
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 3px;
+    margin-right: 6px;
+  }
+  .badge-no {
+    display: inline-block;
+    background: rgba(242,237,230,0.04);
+    border: 0.5px solid var(--border);
+    color: var(--muted);
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 3px;
+    margin-right: 6px;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    padding: 70px 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .stat-box {
+    background: var(--surface);
+    padding: 36px 32px;
+    border: 0.5px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px; color: var(--red);
+    letter-spacing: 0.02em; line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 13px; font-weight: 300; color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    padding: 80px 60px;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 40px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .cta-left h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: 0.03em; line-height: 1;
+    margin-bottom: 12px;
+  }
+  .cta-left h2 span { color: var(--red); }
+  .cta-left p {
+    font-size: 14px; font-weight: 300; color: var(--muted);
+    max-width: 380px; line-height: 1.7;
+  }
+
+  .cta-right { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+  .btn-primary {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .cta-contact {
+    font-size: 12px; color: var(--muted); font-weight: 300;
+  }
+  .cta-contact a { color: var(--white); text-decoration: none; border-bottom: 0.5px solid rgba(242,237,230,0.3); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 28px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-left {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px; letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .footer-left span { color: var(--red); }
+
+  .footer-right {
+    font-size: 12px; color: var(--muted); font-weight: 300;
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
+  .hero-title   { animation: fadeUp 0.7s ease both; animation-delay: 0.2s; }
+  .hero-sub     { animation: fadeUp 0.7s ease both; animation-delay: 0.35s; }
+  .hero-price   { animation: fadeUp 0.7s ease both; animation-delay: 0.5s; }
+  .domain-strip { animation: fadeUp 0.7s ease both; animation-delay: 0.6s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    header, .hero, .domain-strip, .why, .compare, .stats, .cta, footer {
+      padding-left: 24px; padding-right: 24px;
+    }
+    .why { grid-template-columns: 1fr; gap: 36px; }
+    .stats { grid-template-columns: 1fr; }
+    .cta { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SIMI<span>RACING</span></div>
+  <div class="header-pill">● Domain Bundle For Sale</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Premium Domain Bundle · Bike Accessories</p>
+  <h1 class="hero-title">
+    YOUR<br>
+    BRAND<span class="accent">.</span><br>
+    <span class="outline">YOUR DOMAIN.</span>
+  </h1>
+  <p class="hero-sub">
+    simiracing.com and simiracing.in are available together — two domains that match exactly what your customers will type to find you. Own both and own your market.
+  </p>
+  <div class="hero-price">
+    <span class="price-num">$1,800</span>
+    <span class="price-note">both domains · negotiable</span>
+  </div>
+</section>
+
+<!-- DOMAIN STRIP -->
+<div class="domain-strip">
+  <div class="domain-badge">
+    <div class="domain-dot"></div>
+    <div class="domain-name">simiracing<span class="ext">.com</span></div>
+    <div class="domain-tag">Global reach</div>
+  </div>
+  <div class="domain-badge">
+    <div class="domain-dot"></div>
+    <div class="domain-name">simiracing<span class="ext">.in</span></div>
+    <div class="domain-tag">India market</div>
+  </div>
+</div>
+
+<!-- WHY SECTION -->
+<section class="why">
+  <h2 class="why-heading">WHY YOUR BRAND<br><span>NEEDS THIS DOMAIN</span></h2>
+
+  <div class="why-card">
+    <div class="why-num">01 — Trust</div>
+    <h3>Customers trust brands with matching domains</h3>
+    <p>When a rider searches "Simi Racing" and lands on simiracing.com, there is zero doubt they are in the right place. A mismatched domain kills that trust instantly — they wonder if it's even the real brand.</p>
+  </div>
+
+  <div class="why-card">
+    <div class="why-num">02 — Google Rankings</div>
+    <h3>An exact-match domain ranks faster on Google</h3>
+    <p>simiracing.com tells Google exactly what the brand is. When someone searches "simi racing bike accessories", Google already sees your domain as a match — giving you a built-in SEO edge over competitors with generic domains.</p>
+  </div>
+
+  <div class="why-card">
+    <div class="why-num">03 — Brand protection</div>
+    <h3>Stop competitors from stealing your brand name</h3>
+    <p>Without simiracing.com, a competitor or squatter can register it today. Every day you delay is a day someone else can take the name you've built — and charge you 10x to get it back later.</p>
+  </div>
+
+  <div class="why-card">
+    <div class="why-num">04 — India + Global</div>
+    <h3>The .in domain locks in the Indian market</h3>
+    <p>simiracing.in signals to Indian customers — and to Google India — that you are a local brand. Combined with .com for global credibility, you cover every rider in every market from day one.</p>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section class="compare">
+  <h2 class="compare-heading">WITH vs <span>WITHOUT</span> THIS DOMAIN</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th style="width:30%">Situation</th>
+        <th style="width:35%">With simiracing.com</th>
+        <th style="width:35%">Without it</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-no">Customer searches your brand name</td>
+        <td class="col-yes"><span class="badge-yes">✓ Win</span>They land directly on your site</td>
+        <td class="col-no"><span class="badge-no">✗ Risk</span>They land on a competitor or a parked page</td>
+      </tr>
+      <tr>
+        <td class="col-no">Running ads on Instagram or Google</td>
+        <td class="col-yes"><span class="badge-yes">✓ Win</span>simiracing.com in the ad — instantly credible</td>
+        <td class="col-no"><span class="badge-no">✗ Risk</span>Random domain in the ad — riders hesitate to click</td>
+      </tr>
+      <tr>
+        <td class="col-no">Professional email address</td>
+        <td class="col-yes"><span class="badge-yes">✓ Win</span>hello@simiracing.com — premium, remembered</td>
+        <td class="col-no"><span class="badge-no">✗ Risk</span>Gmail or off-brand domain — looks unprofessional</td>
+      </tr>
+      <tr>
+        <td class="col-no">Brand value over time</td>
+        <td class="col-yes"><span class="badge-yes">✓ Win</span>Domain appreciates with your brand — an asset</td>
+        <td class="col-no"><span class="badge-no">✗ Risk</span>No digital asset — nothing to show investors or buyers</td>
+      </tr>
+      <tr>
+        <td class="col-no">Protecting the brand long term</td>
+        <td class="col-yes"><span class="badge-yes">✓ Win</span>No one can register your name — fully secured</td>
+        <td class="col-no"><span class="badge-no">✗ Risk</span>Anyone can register simiracing.com tomorrow</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat-box">
+    <div class="stat-num">84%</div>
+    <div class="stat-label">of consumers say they trust a business more when its domain name matches its brand name</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">3×</div>
+    <div class="stat-label">higher click-through rate on Google Ads when the display URL matches the brand name exactly</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">10×</div>
+    <div class="stat-label">average markup when buying back a domain after a competitor or squatter registers it first</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-left">
+    <h2>CLAIM <span>SIMIRACING</span><br>BEFORE SOMEONE ELSE DOES</h2>
+    <p>Both domains. One price. Ready to transfer the same day. Serious inquiries only — open to reasonable offers.</p>
+  </div>
+  <div class="cta-right">
+    <div class="hero-price" style="margin-bottom:4px;">
+      <span class="price-num">$1,800</span>
+      <span class="price-note">bundle · negotiable</span>
+    </div>
+    <a href="https://t.me/MEGASONIC85" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Chat on Telegram</a>
+    <div class="cta-contact">
+      Or message anonymously · <a href="https://t.me/MEGASONIC85" target="_blank" style="color:var(--white);border-bottom:0.5px solid rgba(242,237,230,0.3);text-decoration:none;">t.me/MEGASONIC85</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">SIMI<span>RACING</span> · Domain Bundle</div>
+  <div class="footer-right">simiracing.com + simiracing.in · For Sale · $1,800</div>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.why-card');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(c => obs.observe(c));
+</script>
+
+</body>
+</html>
